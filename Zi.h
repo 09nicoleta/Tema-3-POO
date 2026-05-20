@@ -10,12 +10,11 @@ class Zi{
     
     public:
     //Constructor cu un parametru
-    Zi(const std::string &zi);
+    Zi(const std::string &zi="null");
     void adaugare(const MasaRestaurant & m);
     friend std::ostream & operator<<(std::ostream & os, const Zi &zi);
      std::vector<int> rezumat_zi();
     std::string getZi() const;
 };
-
 
 #endif

@@ -1,14 +1,13 @@
 #include "MasaRestaurant.h"
 #include "Meniu.h"
-#include "MeniuSpecial.h"
-#include "Bauturi.h"
-#include "PreparatePrincipale.h"
+#include "MeniuGeneric.h"
 #include "Exceptii.h"
+#include "Factory.h"
 #include<iostream>
 
 //Constructor
-MasaRestaurant::MasaRestaurant(const std::vector<std::shared_ptr<Meniu>> &meniuri={},int id_masa=0, int timp=0): 
-                                                                meniuri{meniuri},id_masa{id_masa}, timp{timp}{}
+MasaRestaurant::MasaRestaurant(const std::vector<std::shared_ptr<Meniu>> &meniuri,int id_masa, int timp): 
+                       meniuri{meniuri},id_masa{id_masa}, timp{timp}{}
 //Constructor copiere
 MasaRestaurant::MasaRestaurant(const MasaRestaurant &masa):id_masa{masa.id_masa},timp{masa.timp}{
     for(auto & meniu:masa.meniuri)
@@ -16,7 +15,7 @@ MasaRestaurant::MasaRestaurant(const MasaRestaurant &masa):id_masa{masa.id_masa}
 }
 
 float MasaRestaurant::consum_total()const{
-    int total=0;
+    float total=0;
     for(auto &meniu:meniuri)
         total+=meniu->total_plata();
     return total;
@@ -41,19 +40,10 @@ std::ostream &operator<<(std::ostream & os, const MasaRestaurant &m){
 
     for(const auto &men : m.meniuri)
         os<<*men;
+    
     return os; 
 }
 
-std::shared_ptr<Meniu> MasaRestaurant::creeazaMeniu(const std::string & tip){
-    if(tip=="MeniuSpecial")
-        return std::make_shared<MeniuSpecial>();
-    if (tip == "Bauturi")
-        return std::make_shared<Bauturi>();
-    if (tip == "PreparatePrincipale")
-        return std::make_shared<PreparatePrincipale>();
-
-    throw EroareMeniu("Tip necunoscut");
-}
 
 
 std::istream &operator>>(std::istream &in, MasaRestaurant &m){
@@ -62,12 +52,30 @@ std::istream &operator>>(std::istream &in, MasaRestaurant &m){
     for(int i=0;i<nr;i++){
         std::string tip;
         in>>tip;
-        //Alocarea memoriei pentru meniu
-        auto meniu=m.creeazaMeniu(tip);
+        
+        std::shared_ptr<Factory> factory;
+
+        if(tip=="MeniuSpecial")
+            factory=std::make_shared<FactoryMeniuSpecial>();
+
+        else if(tip=="Bauturi")
+            factory=std::make_shared<FactoryBauturi>();
+
+        else if(tip=="PreparatePrincipale")
+            factory=std::make_shared<FactoryPreparatePrincipale>();
+
+        else
+            throw EroareMeniu("Tip invalid");
+
+    auto meniu = factory->creeazaMeniu();
+
         meniu->citire(in);
         m.meniuri.emplace_back(meniu);   
     }
     in>>m.id_masa>>m.timp;
+    verificaInterval<int>(m.timp, 0, 460);
+    verificaInterval<int>(m.id_masa, 0, 30);
+
     return in;
 }
 
@@ -75,14 +83,14 @@ std::vector<int> MasaRestaurant::rezumat_comanda(){
     int nr_msp=0, nr_b=0, nr_pp=0;
 
     for(const auto &m : meniuri){
-        //m.get() returneaza pointerul "brut", m fiind de tip shared_ptr, altfel ar da eroare
+       
         if(dynamic_cast<MeniuSpecial*>(m.get()))
             nr_msp++;
         else if(dynamic_cast<Bauturi*>(m.get()))
             nr_b++;
         else if(dynamic_cast<PreparatePrincipale*>(m.get()))
             nr_pp++;
-    }
+        }
 
     return {nr_pp,nr_msp, nr_b,};
 }

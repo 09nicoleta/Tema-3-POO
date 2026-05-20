@@ -7,7 +7,6 @@ class Meniu{
     virtual float total_plata_()const =0;
     virtual void afisare(std::ostream&) const=0;
     protected:
-    static int venit_total;
     public:
     //Constructor
     Meniu()=default;
@@ -20,7 +19,6 @@ class Meniu{
     friend std::ostream &operator<<(std::ostream & os, const Meniu & meniu);
     float total_plata() const; 
     virtual std::shared_ptr<Meniu> clone() const = 0;
-    static int get_venit();
 
 };
 

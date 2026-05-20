@@ -7,13 +7,12 @@
 class MasaRestaurant{
     std::vector<std::shared_ptr<Meniu>> meniuri;
     int id_masa, timp;
-
-    std::shared_ptr<Meniu> creeazaMeniu(const std::string & tip);
+    //std::shared_ptr<Meniu> creeazaMeniu(const std::string & tip);
     public:
     float consum_total() const;
     //Constructor
-    MasaRestaurant()=default;
-    MasaRestaurant(const std::vector<std::shared_ptr<Meniu>> &meniuri, int id_masa, int timp);
+    
+    MasaRestaurant(const std::vector<std::shared_ptr<Meniu>> &meniuri={},int id_masa=0, int timp=0);
     //Constructor de copiere
     MasaRestaurant(const MasaRestaurant & masa);
 

@@ -2,6 +2,7 @@
 #define SIMULATORRESTAURANT_H
 #include "MasaRestaurant.h"
 #include "Zi.h"
+
 #include<random>
 #include<string>
 

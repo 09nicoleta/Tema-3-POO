@@ -2,23 +2,23 @@
 #include<iostream>
 
 //Constructor
-Zi::Zi(const std::string & zi="null"):zi{zi}{}
+Zi::Zi(const std::string & zi):zi{zi}{}
 
 void Zi::adaugare(const MasaRestaurant &m){
     mese_ocupate.emplace_back(m);
 }
 
 std::ostream &operator<<(std::ostream & os, const Zi & z){
-    std::cout<<"Activitatea restaurantului in ziua de "<<z.zi<<'\n';
+    os<<"Activitatea restaurantului in ziua de "<<z.zi<<'\n';
     for(const auto &activitate: z.mese_ocupate){
         os<<activitate;
     }
     return os;
-}
+} 
 std::vector<int> Zi::rezumat_zi(){
     std::vector<int> nr_men_com(3, 0);
 
-    for( auto& masa : mese_ocupate){
+    for( auto& masa:mese_ocupate){
         auto r = masa.rezumat_comanda();
 
         for(int i=0; i<3; ++i){

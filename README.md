@@ -19,10 +19,10 @@ Clasa Zi este folosita pentru a "uni" informatiile despre activitatea dintr-o zi
 *Voi face review lui Lica Daria - Pizza-Delivery*    
 
 # Bibliografie:
-  https://www.geeksforgeeks.org/cpp/stdmt19937-class-in-cpp/ 
-  https://www.geeksforgeeks.org/dsa/stduniform_int_distribution-class-in-c/
-  https://www.geeksforgeeks.org/cpp/dynamic-_cast-in-cpp/
-  https://www.geeksforgeeks.org/cpp/exception-handling-c/
-  https://stackoverflow.com/questions/4303513/push-back-vs-emplace-back
+  - https://www.geeksforgeeks.org/cpp/stdmt19937-class-in-cpp/ 
+  - https://www.geeksforgeeks.org/dsa/stduniform_int_distribution-class-in-c/
+  - https://www.geeksforgeeks.org/cpp/dynamic-_cast-in-cpp/
+  - https://www.geeksforgeeks.org/cpp/exception-handling-c/
+  - https://stackoverflow.com/questions/4303513/push-back-vs-emplace-back
 
 
