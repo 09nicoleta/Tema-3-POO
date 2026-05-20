@@ -4,6 +4,7 @@
 #include "Exceptii.h"
 #include "Factory.h"
 #include<iostream>
+#include<vector>
 
 //Constructor
 MasaRestaurant::MasaRestaurant(const std::vector<std::shared_ptr<Meniu>> &meniuri,int id_masa, int timp): 
@@ -21,7 +22,7 @@ float MasaRestaurant::consum_total()const{
     return total;
 }
 
-MasaRestaurant &MasaRestaurant::operator=(MasaRestaurant m) {
+MasaRestaurant &MasaRestaurant::operator=(MasaRestaurant m){
     swap(*this, m);
     return *this;
 }
@@ -79,7 +80,7 @@ std::istream &operator>>(std::istream &in, MasaRestaurant &m){
     return in;
 }
 
-std::vector<int> MasaRestaurant::rezumat_comanda(){
+std::vector<int> MasaRestaurant::rezumat_comanda()const{
     int nr_msp=0, nr_b=0, nr_pp=0;
 
     for(const auto &m : meniuri){

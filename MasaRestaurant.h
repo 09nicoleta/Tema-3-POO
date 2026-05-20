@@ -5,9 +5,9 @@
 #include <vector>
 
 class MasaRestaurant{
+
     std::vector<std::shared_ptr<Meniu>> meniuri;
     int id_masa, timp;
-    //std::shared_ptr<Meniu> creeazaMeniu(const std::string & tip);
     public:
     float consum_total() const;
     //Constructor
@@ -23,7 +23,7 @@ class MasaRestaurant{
     friend std::istream &operator>>(std::istream &in, MasaRestaurant &m);
     //Destructor
     ~MasaRestaurant()=default;
-    std::vector<int> rezumat_comanda();
+    std::vector<int> rezumat_comanda()const;
 };
 
 #endif

@@ -13,10 +13,9 @@ ManagerRestaurant & ManagerRestaurant::getInstance(){
      return mg;
 }
 
-void ManagerRestaurant::run(){
+void ManagerRestaurant::input(){
     bool loop=true;
-    std::vector<std::string> zile_sapt={"luni","marti","miercuri","joi","vineri","sambata","duminica"};
-    std::vector<Zi> saptamana;
+
     std::ifstream f("tastatura.in");
     int op;
     std::cout<<" Alegeti datele pe care le prelucrati:\n Tastati 1 --> date fisier\n         2 --> simuleaza activitatea restaurantului\n";
@@ -64,7 +63,12 @@ void ManagerRestaurant::run(){
     }
     }
 std::string input;
+}
 
+void ManagerRestaurant::meniu(){
+    bool loop=true;
+    std::string input;
+    int op;
     while(loop){
 std::cout << R"(
 -------------------------------------------------       ⣠⣾⣿⣿⣿⣷⣄

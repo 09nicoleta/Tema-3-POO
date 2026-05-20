@@ -3,6 +3,8 @@
 
 int main(){
 
-    ManagerRestaurant::getInstance().run();
+    ManagerRestaurant::getInstance().input();
+    ManagerRestaurant::getInstance().meniu();
+
     return 0;
 }

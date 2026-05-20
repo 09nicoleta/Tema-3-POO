@@ -15,14 +15,14 @@ std::ostream &operator<<(std::ostream & os, const Zi & z){
     }
     return os;
 } 
-std::vector<int> Zi::rezumat_zi(){
+std::vector<int> Zi::rezumat_zi() const{
     std::vector<int> nr_men_com(3, 0);
 
     for( auto& masa:mese_ocupate){
-        auto r = masa.rezumat_comanda();
+        auto r=masa.rezumat_comanda();
 
-        for(int i=0; i<3; ++i){
-            nr_men_com[i] += r[i];
+        for(int i=0;i<3;++i){
+            nr_men_com[i]+=r[i];
         }
     }
 

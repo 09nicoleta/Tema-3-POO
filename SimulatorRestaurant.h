@@ -6,7 +6,7 @@
 #include<random>
 #include<string>
 
-class SimulatorRestaurant {
+class SimulatorRestaurant{
     std::mt19937 rng;
 
 public:
